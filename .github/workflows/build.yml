@@ -1,4 +1,4 @@
-name: Build APK Manually (Corrected Dependencies)
+name: Build APK Manually (Final Dependencies)
 
 on:
   push:
@@ -19,15 +19,15 @@ jobs:
         with:
           python-version: '3.9'
 
-      # Step 3: Install CORRECTED Buildozer dependencies for modern Ubuntu
+      # Step 3: Install CORRECTED Buildozer system dependencies
       - name: Install Buildozer dependencies
         run: |
           sudo apt-get update
           sudo apt-get install -y git zip unzip openjdk-17-jdk autoconf libtool pkg-config zlib1g-dev libncurses-dev cmake libffi-dev libssl-dev
 
-      # Step 4: Manually install Buildozer
-      - name: Install Buildozer
-        run: pip install buildozer
+      # Step 4: Manually install Buildozer AND CYTHON
+      - name: Install Buildozer and Cython
+        run: pip install buildozer cython
 
       # Step 5: Run the Buildozer command
       - name: Run Buildozer
