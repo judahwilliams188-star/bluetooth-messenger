@@ -1,4 +1,4 @@
-name: Build Android APK
+name: Build Android APK with Buildozer
 
 on:
   push:
@@ -9,26 +9,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Checks out your repository's code so the runner can see it.
-      - name: Checkout
+      - name: Check out repository
         uses: actions/checkout@v4
 
-      # Step 2: Sets up a Java environment, which Buildozer needs.
-      - name: Set up Java
+      - name: Set up Java 11
         uses: actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: '11'
 
-      # Step 3: This is the build step. We give it an "id" so we can refer to it later.
       - name: Build with Buildozer
         id: buildozer
         uses: AndreMiras/actions-buildozer@v4.4.0
         with:
           command: buildozer android debug
 
-      # Step 4: This uploads the finished app. It uses the direct output from the step above.
-      - name: Upload artifacts
+      - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: package
