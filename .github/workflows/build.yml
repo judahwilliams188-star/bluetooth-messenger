@@ -8,14 +8,16 @@ jobs:
   build:
     runs-on: ubuntu-latest
     steps:
+      # This step checks out a copy of your repository.
       - uses: actions/checkout@v3
 
+      # This is the corrected build step with proper capitalization.
       - name: Build with Buildozer
         uses: AndreMiras/actions-buildozer@v4.4.0
         with:
-          # The command to execute
           command: buildozer android debug
 
+      # This uploads the finished app.
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
